@@ -1,6 +1,7 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import objects.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +18,8 @@ public class AccountTests {
 
     @Test
     public void createAccountTest() {
+        //create user data
+        Account realAccount = new Account("Automation Account 3", "www.tut.by", "Apparel");
         //driver settings
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -30,7 +33,7 @@ public class AccountTests {
         //open new account modal
         NewAccountModalPage newAccountModalPage = new NewAccountModalPage(driver);
         newAccountModalPage.openPage();
-        newAccountModalPage.create("Automation Account", "www.tut.by");
+        newAccountModalPage.create(realAccount);
         //TODO: Implement asserts
     }
 }

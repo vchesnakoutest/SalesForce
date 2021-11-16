@@ -1,6 +1,8 @@
 package pages;
 
+import elements.DropDown;
 import elements.InputField;
+import objects.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -16,9 +18,10 @@ public class NewAccountModalPage extends BasePage{
         driver.get("https://pandadoc9.lightning.force.com/lightning/o/Account/new");
     }
 
-    public void create(String accountName, String webSite) {
-        new InputField(driver, "Account Name").writeText(accountName);
-        new InputField(driver, "Website").writeText(webSite);
+    public void create(Account account) {
+        new InputField(driver, "Account Name").writeText(account.getAccountName());
+        new InputField(driver, "Website").writeText(account.getWebSite());
+        new DropDown(driver, "Industry").selectOption(account.getIndustryType());
         clickSave();
     }
 
